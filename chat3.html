@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    #messages {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      background: #fff;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+    .message {
+      margin-bottom: 10px;
+      padding: 5px;
+      border-bottom: 1px solid #eee;
+    }
+    form {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      gap: 10px;
+    }
+    input[type="text"], input[type="email"], input[type="password"], input[type="file"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #authForm {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    #logoutButton {
+      background-color: #dc3545;
+    }
+    #logoutButton:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Authentication Form -->
+  <div id="authForm">
+    <input type="email" id="emailInput" placeholder="Enter email" required />
+    <input type="password" id="passwordInput" placeholder="Enter password" required />
+    <input type="text" id="usernameInput" placeholder="Choose a username" required />
+    <button id="loginButton">Login</button>
+    <button id="createAccountButton">Create Account</button>
+  </div>
+
+  <!-- Chat UI (Visible after login) -->
+  <div id="chatContainer" style="display:none;">
+    <div id="messages"></div>
+    <form id="chatForm">
+      <input type="text" id="messageInput" placeholder="Type your message..." required />
+      <input type="file" id="imageInput" accept="image/*" />
+      <button type="submit">Send</button>
+    </form>
+    <button id="logoutButton">Logout</button>
+  </div>
+
+  <script type="module">
+    // Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAXnfwNKbDcyuWbRo0GoDKvCiOpkOYN6Jg",
+      authDomain: "react-firechat-8920e.firebaseapp.com",
+      projectId: "react-firechat-8920e",
+      storageBucket: "react-firechat-8920e.firebasestorage.app",
+      messagingSenderId: "788922160242",
+      appId: "1:788922160242:web:d52e5905ee8015ccac1eeb",
+      measurementId: "G-RY892H28CH"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // Cloudinary Configuration
+    const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/dogiqggzn/image/upload"; // Replace with your cloud name
+    const CLOUDINARY_UPLOAD_PRESET = "chat_uploads"; // Replace with your preset
+
+    // DOM Elements
+    const messageContainer = document.getElementById("messages");
+    const chatForm = document.getElementById("chatForm");
+    const messageInput = document.getElementById("messageInput");
+    const imageInput = document.getElementById("imageInput");
+    const authForm = document.getElementById("authForm");
+    const emailInput = document.getElementById("emailInput");
+    const passwordInput = document.getElementById("passwordInput");
+    const usernameInput = document.getElementById("usernameInput");
+    const loginButton = document.getElementById("loginButton");
+    const createAccountButton = document.getElementById("createAccountButton");
+    const chatContainer = document.getElementById("chatContainer");
+    const logoutButton = document.getElementById("logoutButton");
+
+    let currentUsername = "";
+
+    // Function to save username in Firestore
+    const saveUsername = async (userId, username) => {
+      const userRef = doc(db, "users", userId);
+      await setDoc(userRef, { username }, { merge: true });
+    };
+
+    // Function to retrieve username from Firestore
+    const getUsername = async (userId) => {
+      const userRef = doc(db, "users", userId);
+      const userSnap = await getDoc(userRef);
+      return userSnap.exists() ? userSnap.data().username : "Unknown User";
+    };
+
+    // Upload image to Cloudinary
+    const uploadImage = async (file) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+      try {
+        const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+        return data.secure_url;
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        return null;
+      }
+    };
+
+    // Function to send a message
+    const sendMessage = async (message, imageFile) => {
+      const chatId = "chatRoom1";  // Use a fixed chat room for simplicity
+      try {
+        let imageUrl = null;
+
+        // Upload image if selected
+        if (imageFile) {
+          imageUrl = await uploadImage(imageFile);
+        }
+
+        const messagesRef = collection(db, `chats/${chatId}/messages`);
+        await addDoc(messagesRef, {
+          userId: auth.currentUser.uid,
+          message,
+          timestamp: serverTimestamp(),
+          username: currentUsername,
+          imageUrl,  // Store image URL if available
+        });
+        console.log("Message sent!");
+      } catch (error) {
+        console.error("Error sending message:", error);
+      }
+    };
+
+    // Function to listen for messages
+    const listenForMessages = () => {
+      const chatId = "chatRoom1";  // Use a fixed chat room for simplicity
+      const messagesRef = collection(db, `chats/${chatId}/messages`);
+      const q = query(messagesRef, orderBy("timestamp", "asc"));
+
+      return onSnapshot(q, (snapshot) => {
+        const messages = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        renderMessages(messages);
+      });
+    };
+
+    // Function to render messages
+    const renderMessages = (messages) => {
+      messageContainer.innerHTML = ""; // Clear existing messages
+      messages.forEach((msg) => {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+
+        const sender = msg.userId === auth.currentUser.uid ? currentUsername : msg.username || "Other User";
+        messageElement.innerHTML = `
+          <p><strong>${sender}:</strong> ${msg.message}</p>
+          ${msg.imageUrl ? `<img src="${msg.imageUrl}" alt="Uploaded Image" style="max-width: 200px; border-radius: 8px;"/>` : ""}
+          <small>${msg.timestamp?.toDate() ? new Date(msg.timestamp.toDate()).toLocaleString() : "Sending..."}</small>
+        `;
+        messageContainer.appendChild(messageElement);
+      });
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+    };
+
+    // Handle user login
+    loginButton.addEventListener("click", async () => {
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        const userId = auth.currentUser.uid;
+
+        // Retrieve username from Firestore
+        const username = await getUsername(userId);
+        currentUsername = username;
+
+        console.log("Logged in as:", username);
+
+        // Show chat UI
+        chatContainer.style.display = "block";
+        authForm.style.display = "none";
+        listenForMessages();
+      } catch (error) {
+        console.error("Login error:", error);
+      }
+    });
+
+    // Handle user sign-up
+    createAccountButton.addEventListener("click", async () => {
+      const email = emailInput.value;
+      const password = passwordInput.value;
+      const username = usernameInput.value.trim();
+
+      if (!username) {
+        alert("Please enter a username before signing up.");
+        return;
+      }
+
+      try {
+        // Create user with Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userId = userCredential.user.uid;
+
+        // Save username to Firestore
+        await saveUsername(userId, username);
+
+        console.log("Account created successfully, username saved!");
+
+        // Automatically sign the user in and show the chat screen
+        currentUsername = username;
+        chatContainer.style.display = "block";
+        authForm.style.display = "none";
+        listenForMessages();
+      } catch (error) {
+        console.error("Sign-up error:", error);
+        alert("Sign-up failed: " + error.message);
+      }
+    });
+
+    // Log out function
+    logoutButton.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        console.log("User signed out!");
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+    });
+
+    // Detect auth state changes
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const username = await getUsername(user.uid);
+        currentUsername = username;
+        chatContainer.style.display = "block";
+        authForm.style.display = "none";
+        listenForMessages();
+      } else {
+        chatContainer.style.display = "none";
+        authForm.style.display = "block";
+      }
+    });
+
+    // Send message
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = messageInput.value;
+      const imageFile = imageInput.files[0]; // Get selected image file
+      sendMessage(message, imageFile);
+      messageInput.value = ""; // Clear input
+      imageInput.value = "";  // Clear image input
+    });
+
+  </script>
+
+</body>
+</html>
