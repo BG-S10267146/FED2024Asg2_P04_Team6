@@ -1,5 +1,7 @@
 /* styles.css */
-body {
+
+
+.login {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
@@ -60,7 +62,7 @@ input {
     box-sizing: border-box;
 }
 
-button {
+.login-button {
     width: 100%;
     padding: 12px;
     background: #007bff;
@@ -72,7 +74,23 @@ button {
     transition: background 0.3s ease;
 }
 
-button:hover {
+.login-button:hover {
+    background: #0056b3;
+}
+
+.login-NEW {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-NEW:hover {
     background: #0056b3;
 }
 
@@ -151,6 +169,419 @@ button:hover {
         margin-top: 20px; /* Adjust margin for mobile */
     }
 }
+/*----------------------------------------HOME PAGE------------------------------------------*/
+/* General Styles */
+.home-page {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.0);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.header-logo img {
+    height: 40px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+}
+
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header nav ul li a.active-link {
+    font-weight: bold;
+    color: #FFC107;
+    position: relative;
+}
+
+header nav ul li a.active-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FFC107;
+    transform: translateY(5px);
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+header nav ul li a:hover {
+    color: #007bff;
+    transform: scale(1.1);
+    border-radius: 5px;
+}
+
+.menu-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    color: #555;
+    position: relative;
+    display: none;
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle-btn {
+        display: block;
+    }
+
+    nav {
+        flex-direction: column;
+        position: absolute;
+        top: 30px;
+        right: 10px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 60px;
+        width: 200px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    header nav.active ul {
+        max-height: 300px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    header nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        padding: 10px 15px;
+        background-color: transparent;
+    }
+
+    header nav ul li a:hover {
+        background-color: #f0f0f0;
+        color: #007bff;
+    }
+
+    header nav ul li {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    header nav ul li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Slideshow Styles */
+.slideshow-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slides-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%;
+  }
+  
+  .slide {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute; /* Position slides absolutely to stack them */
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateX(100%); /* Start slides off-screen to the right */
+    transition: transform 0.5s ease;
+  }
+  
+  .slide.active {
+    transform: translateX(0); /* Bring active slide into view */
+  }
+  
+  .slide.prev {
+    transform: translateX(-100%); /* Move previous slide off-screen to the left */
+  }
+
+.slide_h1 {
+    font-size: 3rem;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    color: white;
+}
+
+.slide_h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    margin-top: 10px;
+    color: white;
+}
+
+.slide_p {
+    font-size: 1rem;
+    margin: 20px 0;
+    color: #fff;
+}
+
+.slide-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Improve text visibility */
+.slide-content {
+    position: relative;
+    z-index: 1; /* Ensure text is above video */
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.0); /* Semi-transparent black overlay */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.slide_h1, .slide_h2, .slide_p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for better readability */
+}
+
+/* Navigation Dots */
+.dots-navigation {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #007bff;
+}
+
+/* Navigation Arrows */
+.slideshow-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev-arrow {
+    left: 20px;
+}
+
+.next-arrow {
+    right: 20px;
+}
+
+.learn-more {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.learn-more:hover {
+    background: #0056b3;
+}
+
+.fashion-more {
+    width: 75%;
+    padding: 12px;
+    background: #A66E38;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px; /* Adjust value as needed */
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+.fashion-more:hover {
+    background: #754E1A;
+}
+
+.elect-more {
+    width: 75%;
+    padding: 12px;
+    background: #8B5DFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px; /* Adjust value as needed */
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+.elect-more:hover {
+    background: #6A42C2;
+}
+
+.house-more {
+    width: 75%;
+    padding: 12px;
+    background: #C8AAAA;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px; /* Adjust value as needed */
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+.house-more:hover {
+    background: #9F8383;
+}
+
+.sport-more {
+    width: 75%;
+    padding: 12px;
+    background: #6A9C89;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px; /* Adjust value as needed */
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+.sport-more:hover {
+    background: #16423C;
+}
+
+.kitchen-more {
+    width: 75%;
+    padding: 12px;
+    background: #CBA35C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px; /* Adjust value as needed */
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+.kitchen-more:hover {
+    background: #754E1A;
+}
+
+  .video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Keep video behind content */
+    overflow: hidden;
+  }
+  
+  .background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover entire slide */
+    filter: brightness(50%); /* Adjust brightness */
+  }
+  
+  /* Responsive Adjustments */
+@media (max-width: 768px) {
+    .slide_h1 {
+      font-size: 2rem; /* Smaller font size for mobile */
+    }
+  
+    .slide_h2 {
+      font-size: 1rem; /* Smaller font size for mobile */
+    }
+  
+    .slide_p {
+      font-size: 0.8rem; /* Smaller font size for mobile */
+    }
+  
+    .slide-content {
+      padding: 15px; /* Reduce padding for mobile */
+    }
+  
+    .slideshow-arrow {
+      padding: 8px; /* Smaller arrows for mobile */
+    }
+  }
 /*------------------------------------------SLOTS-----------------------------------------------*/
 /* slots.css */
 * {
@@ -159,7 +590,7 @@ button:hover {
     box-sizing: border-box;
 }
 
-body {
+.slots-body {
     font-family: 'Roboto', sans-serif;
     color: #fff;
     display: flex;
@@ -167,6 +598,8 @@ body {
     align-items: center;
     height: 100vh;
 }
+
+
 
 .game-container {
     border-radius: 20px;
@@ -230,10 +663,15 @@ body {
     color: #fff;
     border: none;
     border-radius: 10px;
-    padding: 15px 30px;
+    padding: 15px 195px;
     font-size: 18px;
     cursor: pointer;
     transition: background 0.3s ease;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 250px; /* Ensures it does not stretch too much */
+    margin: 0 auto;
 }
 
 .spin-button:hover {
@@ -339,7 +777,7 @@ body {
     }
 
     .spin-button {
-        padding: 12px 24px;
+        padding: 12px;
         font-size: 16px;
     }
 
@@ -379,4 +817,190 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+}
+/*----------------------------------Rewards---------------------------------------------------*/
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+  }
+
+
+  /* Points System Container */
+.points-container {
+background: #fff;
+border-radius: 10px;
+padding: 20px;
+margin: 100px auto 20px;
+max-width: 800px;
+text-align: center;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.points-container h1 {
+font-size: 2rem;
+margin-bottom: 10px;
+color: #333;
+}
+
+.points-container p {
+font-size: 1.2rem;
+color: #555;
+margin-bottom: 20px;
+}
+
+.points-container table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+}
+
+.points-container table th,
+.points-container table td {
+padding: 10px;
+border: 1px solid #ddd;
+text-align: center;
+}
+
+.points-container table th {
+background-color: #f5f5f5;
+font-weight: bold;
+}
+
+.points-container table td {
+background-color: #fff;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+.points-container table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.points-container table thead,
+.points-container table tbody,
+.points-container table th,
+.points-container table td,
+.points-container table tr {
+  display: block;
+}
+
+.points-container table thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.points-container table tr {
+  border: 1px solid #ccc;
+}
+
+.points-container table td {
+  border: none;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 50%;
+  text-align: left;
+}
+
+.points-container table td:before {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 45%;
+  padding-right: 10px;
+  white-space: nowrap;
+  content: attr(data-label);
+  font-weight: bold;
+}
+}
+  /* Rewards Grid */
+  .rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .reward-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.reward-card:hover {
+    transform: translateY(-5px);
+}
+
+.reward-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.reward-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.reward-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.reward-card .points {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ff4081;
+}
+
+/* Lottie Animation Styling */
+.lottie-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.reward-card:hover .lottie-container {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rewards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .points-container {
+        margin: 80px auto 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rewards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .points-container {
+        margin: 60px auto 20px;
+    }
 }
