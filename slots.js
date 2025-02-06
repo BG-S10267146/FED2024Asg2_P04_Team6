@@ -2,38 +2,51 @@ const slots = document.querySelectorAll(".slot-item");
 const spinButton = document.querySelector(".spin-button");
 const rewardsList = document.querySelector(".rewards-list");
 const spinsCounter = document.getElementById("spins-counter");
+const totalPointsDisplay = document.getElementById("total-points");
 
 const rewards = [
-  { emoji: "🎁", text: "10% Off Your Next Purchase" },
-  { emoji: "🚚", text: "Free Shipping on Your Order" },
-  { emoji: "💲", text: "$5 Discount Coupon" },
-  { emoji: "🛒", text: "Buy One, Get One Free" },
-  { emoji: "🎉", text: "Spin Again for Free" },
-  { emoji: "🍀", text: "Lucky Discount: 20% Off" },
-  { emoji: "🌟", text: "Exclusive Member Offer" },
-  { emoji: "🎈", text: "Birthday Special: 15% Off" },
+  { emoji: "🎁", points: 20 },
+  { emoji: "🚚", points: 20 },
+  { emoji: "💲", points: 20 },
+  { emoji: "🛒", points: 20 },
+  { emoji: "🎉", points: 100 },
+  { emoji: "🍀", points: 20 },
+  { emoji: "🌟", points: 20 },
+  { emoji: "🎈", points: 20 },
 ];
 
-const noReward = { emoji: "❌", text: "No Rewards" };
+const noReward = { emoji: "❌", text: "No Rewards", points: 5 };
 
-let spinsRemaining = 3; // Initialize the pity system counter
+let spinsSinceLastMatch = 0;
+let totalSpins = 5;
+let totalPoints = 0;
 
 function spinSlots() {
-  spinButton.disabled = true; // Disable button during spin
+  if (totalSpins <= 0) {
+    alert("No more spins left!");
+    // Save points to localStorage when spins run out
+    localStorage.setItem("totalPoints", totalPoints);
+    window.location.href = "spend-points.html"; // Redirect to spend-points.html when spins are 0
+    return;
+  }
+
+  spinButton.disabled = true;
   let spins = 0;
-  const totalSpins = 30; // Number of intermediate spins for animation
-  const spinDuration = 3000; // Total duration of the spin in milliseconds
+  const intermediateSpins = 30;
+  const spinDuration = 3000;
+
+  spinsCounter.textContent = `Spins left: ${totalSpins}`;
 
   slots.forEach(slot => slot.classList.add('spinning'));
 
   const spin = () => {
+    spinsCounter.textContent = `Spins left: ${totalSpins}`;
+
     slots.forEach((slot) => {
-      if (spinsRemaining === 1) {
-        // If it's the pity spin, ensure all slots display the same reward
+      if (spinsSinceLastMatch >= 2) {
         const guaranteedReward = rewards[Math.floor(Math.random() * rewards.length)];
         slot.textContent = guaranteedReward.emoji;
       } else {
-        // Normal random selection
         const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
         slot.textContent = randomReward.emoji;
       }
@@ -41,38 +54,54 @@ function spinSlots() {
 
     spins++;
 
-    if (spins < totalSpins) {
-      setTimeout(spin, spinDuration / totalSpins); // Use setTimeout for smoother animation
+    if (spins < intermediateSpins) {
+      setTimeout(spin, spinDuration / intermediateSpins);
     } else {
       setTimeout(() => {
         const slotResults = Array.from(slots).map(slot => slot.textContent);
-        const requiredElements = ["🎁", "🚚", "💲"];
-        const allElementsPresent = requiredElements.every(element => slotResults.includes(element));
+        const rewardCount = {};
 
-        // Pity system logic
-        spinsRemaining--;
-        spinsCounter.textContent = spinsRemaining;
+        slotResults.forEach(result => {
+          rewardCount[result] = (rewardCount[result] || 0) + 1;
+        });
 
-        if (allElementsPresent || spinsRemaining === 0) {
-          const result = rewards[Math.floor(Math.random() * rewards.length)];
-          
-          if (spinsRemaining === 0) {
-            // On pity spin, ensure all three slots display the same reward
-            const guaranteedReward = rewards[Math.floor(Math.random() * rewards.length)];
-            slots.forEach(slot => slot.textContent = guaranteedReward.emoji);
-            addReward(guaranteedReward.text);
-          } else {
-            addReward(result.text);
+        let earnedPoints = 0;
+        let rareMatch = false;
+
+        for (const reward of rewards) {
+          if (rewardCount[reward.emoji] === 3) {
+            earnedPoints = 500;
+            rareMatch = true;
+            break;
+          } else if (rewardCount[reward.emoji] === 2) {
+            earnedPoints += 20;
           }
-
-          spinsRemaining = 3; // Reset the pity counter
-          spinsCounter.textContent = spinsRemaining;
-        } else {
-          addReward(noReward.text);
         }
 
+        if (!rareMatch) {
+          if (slotResults.every(result => result === slotResults[0])) {
+            earnedPoints = 100;
+          } else {
+            earnedPoints += 5;
+          }
+        }
+
+        totalPoints += earnedPoints;
+        totalPointsDisplay.textContent = `Total Points: ${totalPoints}`;
+
+        addReward(`You earned ${earnedPoints} points!`);
+
+        if (spinsSinceLastMatch >= 2) {
+          spinsSinceLastMatch = 0;
+        } else {
+          spinsSinceLastMatch++;
+        }
+
+        totalSpins--;
+        spinsCounter.textContent = `Spins left: ${totalSpins}`;
+
         slots.forEach(slot => slot.classList.remove('spinning'));
-        spinButton.disabled = false; // Re-enable button after spin
+        spinButton.disabled = false;
       }, 500);
     }
   };
