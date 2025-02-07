@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing Platform</title>
+    <script type="module" src="listing.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .listing-container {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Grid layout for listings */
+        #listingsDisplay {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .listing-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        select, input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Responsive: Switch to 2 columns for medium screens */
+        @media (max-width: 900px) {
+            #listingsDisplay {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Responsive: Switch to 1 column for small screens */
+        @media (max-width: 600px) {
+            #listingsDisplay {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+        .listing-item img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+.listing-image {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Item Listings</h1>
+    
+    <button id="toggleFormButton">Show Form</button>
+    
+    <div class="listing-container" style="display: none;">
+        <h2>List an Item</h2>
+        <form id="sellForm">
+            <input type="text" id="titleInput" placeholder="Title" required><br>
+            <input type="number" id="priceInput" placeholder="Price" required><br>
+            <textarea id="descriptionInput" placeholder="Description" required></textarea><br>
+            <input type="file" id="imageInput" accept="image/*" required><br>
+            <div class="input-group">
+              <label for="customAttributeInput">Category</label>
+              <select id="customAttributeInput" required>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+                <option value="furniture">Furniture</option>
+                <option value="accessories">Accessories</option>
+                <option value="kitchenware">Kitchenware</option>
+              </select>
+            </div>
+            <select id="conditionInput" required>
+                <option value="First-hand">First-hand</option>
+                <option value="Second-hand">Second-hand</option>
+            </select><br>
+            <button type="button" id="listItemButton">List Item</button>
+        </form>
+    </div>
+    
+    <h2>Filter Listings</h2>
+    <input type="text" id="searchInput" placeholder="Search Listings">
+    <select id="sortTime">
+        <option value="none">Sort by Time</option>
+        <option value="asc">Oldest First</option>
+        <option value="desc">Newest First</option>
+    </select>
+    <select id="sortPopularity">
+        <option value="none">Sort by Popularity</option>
+        <option value="asc">Least Viewed</option>
+        <option value="desc">Most Viewed</option>
+    </select>
+    
+    <div id="listingsDisplay">
+        <!-- Example listings -->
+        <div class="listing-item">Item 1</div>
+        <div class="listing-item">Item 2</div>
+        <div class="listing-item">Item 3</div>
+        <div class="listing-item">Item 4</div>
+        <div class="listing-item">Item 5</div>
+        <div class="listing-item">Item 6</div>
+        <div class="listing-item">Item 7</div>
+        <div class="listing-item">Item 8</div>
+        <div class="listing-item">Item 9</div>
+    </div>
+</body>
+</html>
