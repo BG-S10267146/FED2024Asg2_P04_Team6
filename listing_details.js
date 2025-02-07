@@ -74,6 +74,11 @@ const fetchListingDetails = async () => {
     alert("Listing not found.");
   }
 };
+// Back Button Functionality
+document.getElementById("backButton").addEventListener("click", () => {
+  window.history.back();
+});
+
 
 // Load listing details on page load
 fetchListingDetails();
