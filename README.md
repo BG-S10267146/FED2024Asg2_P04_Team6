@@ -1,9 +1,14 @@
 # FED2024Asg2_P04_Team6
 This is Bryan Goh's and Teng Ren's FED Assignment
 
+We were looking through the appendix and reading the scenario and realised the app looked really like current apps such as Carousell, Lazada, Shopee. We decided to take some ideas from these applications and combine them together to create the features that we have listed down above. There were some parts of the current available applications that we ourselves do not like and hence we decided to implement our own suggestions into our own MokeSell application. By using our own suggestions that we feel can improve those applications, we used it on our own application to produce a new and improved MokeSell idea that would take the world by storm and hopefully replace the current applications out there. MokeSell uses most of the features of the other applications and combines them together, so users do not need to go to different applications to do different things. We realised that MokeSell resembles Carousell the most which is partially why our idea stems from Carousell. However, instead of copying Carousell main design and their whole features we added our own. As stated, the colour scheme chosen was to allow users to feel comfortable while using the app. Our app has all the default features and new colour design which will make it stand out from others. We decided these features would benefit the app which is why we went for these ideas. 
 
-Your Project's Name
-One or two paragraphs providing an overview of your project. Tell us about your project.
+# Design Process
+
+
+# Technology Used
+
+[Firebase](https://firebase.google.com)
 
 Essentially, this part is your sales pitch.
 
