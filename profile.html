@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile and Friends</title>
+  <script type="module" src="profile.js"></script>
+  <script type="module" src="friends.js"></script>
+  <script type="module" src="home.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js"></script>
+</head>
+<body class="home-page">
+  <div class="image-background">
+    <img src="media/3d-illustration-smartphone-with-products-coming-out-screen-online-shopping-e-commerce-concept.jpg" alt="Background Image" class="background-image">
+</div>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="header-logo">
+      <img src="media/mokesell2.png" alt="MokeSell Logo">
+    </div>
+    <div class="menu-toggle-btn">☰</div>
+    <nav>
+      <ul>
+        <li><a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
+        <li><a href="listing.html"><i class="fas fa-compass"></i> <span>Explore</span></a></li>
+        <li><a href="inbox.html"><i class="fas fa-inbox"></i> <span>Inbox</span></a></li>
+        <li><a href="reward.html"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
+        <li><a href="profile.html" class="active-link"><i class="fas fa-user"></i> <span>Profile</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Lottie Animation Container -->
+  <div id="lottie-animation-container"></div>
+
+  <!-- Profile Section -->
+  <div class="container-profilepage">
+    <img id="profileImagePreview" src="" alt="Profile Preview" class="profile-item">
+    <h1 class="profile-h1">Edit Profile</h1>
+    <form id="profileForm">
+      <label for="usernameInput">Username:</label>
+      <input type="text" id="usernameInput" class="user-profile-input" placeholder="Enter new username">
+      
+      <label for="passwordInput">Password:</label>
+      <input type="password" id="passwordInput" class="password-profile-input" placeholder="Enter new password">
+      
+      <label for="profileImageInput">Profile Picture:</label>
+      <input type="file" id="profileImageInput" class="profileimg-profile-input" accept="image/*">
+      
+      <button type="submit" class="button-profilepage">Update Profile</button>
+    </form>
+  </div>
+
+  <!-- Friends Section -->
+  <div class="container-profilepage">
+    <h2 class="profile-h2">Friend System</h2>
+
+    <!-- 🔍 Search Users -->
+    <div class="search-container">
+      <h3 class="search-container-h3">Search for Users</h3>
+      <input type="text" id="searchInput" placeholder="Enter username">
+      <button id="searchButton" class="button-profilepage">Search</button>
+      <div id="resultsContainer"></div>
+    </div>
+
+    <!-- 📩 Friend Requests -->
+    <div class="requests-container">
+      <h3 class="requests-container-h3">Pending Friend Requests</h3>
+      <div id="requestsContainer"></div>
+    </div>
+
+    <!-- 👥 Friends List -->
+    <div class="friends-container">
+      <h3 class="friends-container-h3">Your Friends</h3>
+      <div id="friendsContainer"></div>
+    </div>
+  </div>
+
+  <!-- Lottie Script -->
+</body>
+</html>
