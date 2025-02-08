@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("sp-totalPoints", totalPoints);
                 alert(`You have successfully purchased ${itemName} for ${itemCost} points!`);
                 pointsTotalDisplay.textContent = `Total Points: ${totalPoints}`;
-                window.location.href = "/html/listing.html"; // Redirect after purchase
+                window.location.href = "listing.html"; // Redirect after purchase
             } else {
                 alert("You do not have enough points to buy this item.");
             }

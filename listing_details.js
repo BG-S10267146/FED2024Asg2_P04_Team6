@@ -75,7 +75,7 @@ const fetchListingDetails = async () => {
           }
 
           // Redirect to chat page
-          window.location.href = `/html/chats.html?chatId=${chatId}`;
+          window.location.href = `chats.html?chatId=${chatId}`;
         } else {
           alert("You need to be logged in to start a chat.");
         }

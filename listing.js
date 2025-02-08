@@ -244,7 +244,7 @@ window.viewDetails = async (listingId) => {
     }
 
     // Redirect to listing details page
-    window.location.href = `/html/listing_details.html?listingId=${listingId}`;
+    window.location.href = `listing_details.html?listingId=${listingId}`;
   }
 };
 
@@ -291,7 +291,7 @@ window.buyItem = async (listingId, listingUserId, price) => {
 
     await deleteDoc(doc(db, "listings", listingId));
     alert("Item bought successfully!");
-    window.location.href = "/html/slots.html";  
+    window.location.href = "slots.html";  
 
   } catch (error) {
     console.error("Error buying item: ", error);

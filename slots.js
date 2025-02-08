@@ -26,7 +26,7 @@ function spinSlots() {
     alert("No more spins left!");
     // Save points to localStorage when spins run out
     localStorage.setItem("totalPoints", totalPoints);
-    window.location.href = "/html/spend-points.html"; // Redirect to spend-points.html when spins are 0
+    window.location.href = "spend-points.html"; // Redirect to spend-points.html when spins are 0
     return;
   }
 

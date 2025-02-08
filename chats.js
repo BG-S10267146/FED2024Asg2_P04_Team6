@@ -102,7 +102,6 @@ const renderMessages = (messages) => {
   ${msg.imageUrl ? `<img class="chat-image" src="${msg.imageUrl}" alt="Uploaded Image"/>` : ""}
   <small class="chat-timestamp">${msg.timestamp?.toDate() ? new Date(msg.timestamp.toDate()).toLocaleString() : "Sending..."}</small>
 </div>
-
     `;
     messageContainer.appendChild(messageElement);
   });
@@ -118,7 +117,7 @@ onAuthStateChanged(auth, async (user) => {
     currentUsername = userSnap.exists() ? userSnap.data().username : "Unknown User";
     listenForMessages();
   } else {
-    window.location.href = "/index.html"; // Redirect to login page if not authenticated
+    window.location.href = "login.html"; // Redirect to login page if not authenticated
   }
 });
 
@@ -131,5 +130,3 @@ chatForm.addEventListener("submit", (e) => {
   messageInput.value = "";
   imageInput.value = "";
 });
-
-

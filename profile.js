@@ -38,6 +38,47 @@ const resultsContainer = document.getElementById("resultsContainer");
 const requestsContainer = document.getElementById("requestsContainer");
 const friendsContainer = document.getElementById("friendsContainer");
 
+// DOM Element for Spins
+/*const spinsContainer = document.getElementById("spinsContainer");
+
+// Function to fetch spins for the current user
+const getSpins = async (userId) => {
+  try {
+    const userRef = doc(db, "users", userId);
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      const spinsCount = userData.spins || 0;  // Default to 0 if no spins field exists
+
+      // Display the spins count
+      spinsContainer.innerHTML = `You have ${spinsCount} spins!`;
+    } else {
+      console.log("User document not found");
+      spinsContainer.innerHTML = "Error loading spins.";
+    }
+  } catch (error) {
+    console.error("Error fetching spins:", error);
+    spinsContainer.innerHTML = "Error loading spins.";
+  }
+};
+
+// Real-time listener for spins
+const listenForSpinsUpdate = (userId) => {
+  const userRef = doc(db, "users", userId);
+  
+  // Listen for real-time updates to the user's document
+  onSnapshot(userRef, (doc) => {
+    if (doc.exists()) {
+      const userData = doc.data();
+      const spinsCount = userData.spins || 0;  // Default to 0 if no spins field exists
+
+      // Update the spins count in the UI
+      spinsContainer.innerHTML = `You have ${spinsCount} spins!`;
+    }
+  });
+};*/
+
 const uploadImage = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
@@ -224,7 +265,7 @@ onAuthStateChanged(auth, async (user) => {
       listenForSpinsUpdate(user.uid); // Listen for real-time updates to spins
     }
   } else {
-    window.location.href = "/index.html"; // Redirect to login page if not authenticated
+    window.location.href = "login.html"; // Redirect to login page if not authenticated
   }
 });
 
@@ -240,7 +281,7 @@ onAuthStateChanged(auth, async (user) => {
       profileImagePreview.src = userData.profileImage || "";
     }
   } else {
-    window.location.href = "/index.html"; // Redirect to login page if not authenticated
+    window.location.href = "login.html"; // Redirect to login page if not authenticated
   }
 });
 
@@ -251,7 +292,7 @@ onAuthStateChanged(auth, async (user) => {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/mp4-videos/Animation - 1738949812929.json' // Path to your Lottie JSON file
+      path: 'mp4-videos/Animation - 1738949812929.json' // Path to your Lottie JSON file
     });
 
   

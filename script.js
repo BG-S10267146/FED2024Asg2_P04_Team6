@@ -40,7 +40,7 @@ if (loginButton) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "/html/home.html"; // Redirect to home page
+      window.location.href = "home.html"; // Redirect to home page
     } catch (error) {
       console.error("Login error:", error);
       alert("Login failed: " + error.message);
@@ -70,7 +70,7 @@ if (createAccountButton) {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const userId = userCredential.user.uid;
       await saveUserCredentials(userId, username, password); // Saving username & password
-      window.location.href = "/html/home.html"; // Redirect to choice page
+      window.location.href = "home.html"; // Redirect to choice page
     } catch (error) {
       console.error("Sign-up error:", error);
       alert("Sign-up failed: " + error.message);

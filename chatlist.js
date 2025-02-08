@@ -36,7 +36,7 @@ const fetchUserChats = async () => {
     const chatItem = document.createElement("li");
     chatItem.innerHTML = `
       <div class="chat-actions">
-        <a href="/html/chat.html?chatId=${chatId}">Chat with ${otherUser}</a>
+        <a href="chat.html?chatId=${chatId}">Chat with ${otherUser}</a>
         <button class="delete-chat" data-chat-id="${chatId}">Delete</button>
     </div>
     `;
@@ -69,6 +69,6 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     fetchUserChats();
   } else {
-    window.location.href = "/index.html"; // Redirect to login page if not authenticated
+    window.location.href = "login.html"; // Redirect to login page if not authenticated
   }
 });
