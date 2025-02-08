@@ -10,12 +10,20 @@ We were looking through the appendix and reading the scenario and realised the a
 
 ## Existing Features
 - Login and Sign Up feature by saving user id to firebase api
-- 
+- Home page (auto scroll with video background), buttons connected to lisitng page
+- Explore page (video background), with real-time listings that can be filtered out or categorised. Users can make listings, make an offer, view details of listings, or buy them recorded in firebase API.
+- Gamification, where users are able to spin slots to earn points to redeem rewards
+- Inbox page, users would be able to view offers made to them (accept or decline), as well as chat messages between potential buyers and themselves(option to delete chat as well).
+- Rewards page, displays potential rewards to be won as well as the points system of the slots game.
+- Profile page, where account management options(change username, password, or profile picture) as well as a friends system( add friends or accept request, showing a friendlist also), would be displayed
+- Mobile view is also used, with the nav bar being able to display a justify icon for dropdown option for smaller screens.
+
 
 
 ## Features Left to Implement
 - Review to sellers
 - Real-time chat with staff
+- bump listing
 
 
 # Technology Used
@@ -43,7 +51,12 @@ ChatGPT is a strong artificial intelligence tool to help debug and teach me how 
 
 # Assistive AI
 
-
+- Video background: Used DeepSeek to debug error in listing page where video does not cover both ends of the page
+![video-background-deepseek](image-1.png)
+- Lottie Container mobile view: used Deepseek to debug flex error in lottie container
+![lottie-container-deepseek](image-2.png)
+- Search and filtered listing: Ensured that its mobile view is displayed correctly, as well as ensuring that the search functionality works when all letters are lower-case
+![search-and-filter-deepseek](image-3.png)
 
 # Testing
 Login Page (index.html)
@@ -71,7 +84,7 @@ Explore Page (listing.html)
 - Each listings have the name of their listing, their condition, the price, the category, the views, the description and listed by who
 - Each listing has 3 buttons to buy, make an offer and finally view more details
 - When you make an offer, the offer would be sent to the inbox of the seller(lister)
-- When you buy, you are brought to a page where you can spin 5 times and after spinning, the points will be saved and you can spend them to buy one reward, after buying, you will be brought back to the listing page
+- When you buy, you are brought to a page where you can spin 5 times and after spinning, the points will be saved and you can spend them to buy one reward, after buying, you will be brought back to the listing page. Listing would be deleted when bought.
 - When you click view details, it stores your views in the listing page of each listing, and since if the listing is clicked, it means the buyer is interested, allowing them to start a private chat with the seller, the chat room is private, messages are saved to ensure to fraud is commited and buyers and sellers have a log to check
 
 Inbox Page (inbox.html)
@@ -151,4 +164,7 @@ Flex
 
 
 # Acknowledgements
-
+- Used Coach homepage as inspiration for video background for homepage
+[Coach Homepage](https://singapore.coach.com/)
+- Used youtube video as inspiration for slots game
+[slots game](https://www.youtube.com/watch?v=PiLGravLedY)
