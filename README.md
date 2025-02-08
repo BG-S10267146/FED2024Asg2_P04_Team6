@@ -8,7 +8,7 @@ We were looking through the appendix and reading the scenario and realised the a
 
 # Features
 
-## Existing Features ****
+## Existing Features
 - Login and Sign Up feature by saving user id to firebase api
 - Home page (auto scroll with video background), buttons connected to lisitng page
 - Explore page (video background), with real-time listings that can be filtered out or categorised. Users can make listings, make an offer, view details of listings, or buy them recorded in firebase API.
@@ -49,7 +49,7 @@ This website is an excellent website for converting our videos to webp, allowing
 ChatGPT
 ChatGPT is a strong artificial intelligence tool to help debug and teach me how to use the api features, allowing me to implement my features and even explore new features that I thought I could not do
 
-# Assistive AI *****
+# Assistive AI
 
 - Video background: Used DeepSeek to debug error in listing page where video does not cover both ends of the page
 ![video-background-deepseek](image-1.png)
@@ -163,7 +163,7 @@ Flex
 [Tote bag](https://www.google.com/search?q=totebag+hd+photo+high+quality&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zp3SBNXVdUaeXH0xShgS7K02owJ_A%3A1738960421426&ei=JW6mZ57iGeaL4-EPiuzp2AY&ved=0ahUKEwjeiMqxtLKLAxXmxTgGHQp2GmsQ4dUDCBE&uact=5&oq=totebag+hd+photo+high+quality&gs_lp=EgNpbWciHXRvdGViYWcgaGQgcGhvdG8gaGlnaCBxdWFsaXR5SNIMUABY-ghwAHgAkAEAmAFIoAGjAqoBATe4AQPIAQD4AQGYAgCgAgCYAwCSBwCgB7sC&sclient=img#vhid=NDE6st7vhUVUKM&vssid=mosaic)
 
 
-# Acknowledgements ****
+# Acknowledgements
 - Used Coach homepage as inspiration for video background for homepage
 [Coach Homepage](https://singapore.coach.com/)
 - Used youtube video as inspiration for slots game
