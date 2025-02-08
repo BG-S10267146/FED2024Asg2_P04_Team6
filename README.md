@@ -4,7 +4,14 @@ This is Bryan Goh's and Teng Ren's FED Assignment
 We were looking through the appendix and reading the scenario and realised the app looked really like current apps such as Carousell, Lazada, Shopee. We decided to take some ideas from these applications and combine them together to create the features that we have listed down above. There were some parts of the current available applications that we ourselves do not like and hence we decided to implement our own suggestions into our own MokeSell application. By using our own suggestions that we feel can improve those applications, we used it on our own application to produce a new and improved MokeSell idea that would take the world by storm and hopefully replace the current applications out there. MokeSell uses most of the features of the other applications and combines them together, so users do not need to go to different applications to do different things. We realised that MokeSell resembles Carousell the most which is partially why our idea stems from Carousell. However, instead of copying Carousell main design and their whole features we added our own. As stated, the colour scheme chosen was to allow users to feel comfortable while using the app. Our app has all the default features and new colour design which will make it stand out from others. We decided these features would benefit the app which is why we went for these ideas. 
 
 # Design Process
-
+- Background Videos: We added background videos that fit the theme of the page or the section, allowing the webpages to be more interactive and engaging to the viewers
+- Lottie: Lottie is added to the inbox page and profile, making it more engaging and appealing, forcing the user to stay on the website and be more engaged
+- Nav-bar to justify drop down: Nav bar when changes to mobile view, nav bar changes to a drop down
+- Nav-bar: nav bar gives the current website "active" id making the nav bar yellow, allowing the users to know where they are
+- Listing(explore): rows of 3 and column flexing, neat and simple design, form hidden so viewers see the items sold first, buttons on listing different colors to properly differentiate them
+- Chat: Each message has a box, allowing them to be displayed and found properly
+- Lighter color scheme: Gives website more cheerful vibes, allowing users to feel satistfied while using the website
+- Blurred purplish bubbly background in slots: Give website a unique view when after buying so user will not feel bored of the design
 
 # Features
 
@@ -46,8 +53,8 @@ HTML is the perfect language for this project as it is able to seemlessly connec
 [Youtube to Webp comverter](https://en4.onlinevideoconverter.pro/45uu/youtube-downloader-mp4)
 This website is an excellent website for converting our videos to webp, allowing our website to seem more realistic due to the videos previewing in the background
 
-ChatGPT
-ChatGPT is a strong artificial intelligence tool to help debug and teach me how to use the api features, allowing me to implement my features and even explore new features that I thought I could not do
+ChatGPT/DeepSeek
+ChatGPT/DeepSeek is a strong artificial intelligence tool to help debug and teach me how to use the api features, allowing me to implement my features and even explore new features that I thought I could not do
 
 # Assistive AI
 
@@ -57,6 +64,10 @@ ChatGPT is a strong artificial intelligence tool to help debug and teach me how 
 ![lottie-container-deepseek](readme-media/image-2.png)
 - Search and filtered listing: Ensured that its mobile view is displayed correctly, as well as ensuring that the search functionality works when all letters are lower-case
 ![search-and-filter-deepseek](readme-media/image-3.png)
+- Learnt how to use and set up cloundinary for image upload and retrieval
+![chatgpt-cloudinary](readme-media/tengren-2.png)
+- Debugged chat feature with chatgpt
+![chatgpt-chat-debug](readme-media/tengren-1.png)
 
 # Testing
 Login Page (index.html)
@@ -168,3 +179,5 @@ Flex
 [Coach Homepage](https://singapore.coach.com/)
 - Used youtube video as inspiration for slots game
 [slots game](https://www.youtube.com/watch?v=PiLGravLedY)
+- Learnt how to use firebase from this youtube channel
+[Firebase tutorial](https://www.youtube.com/@programmingarc)
