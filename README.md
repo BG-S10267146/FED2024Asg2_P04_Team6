@@ -52,11 +52,11 @@ ChatGPT is a strong artificial intelligence tool to help debug and teach me how 
 # Assistive AI
 
 - Video background: Used DeepSeek to debug error in listing page where video does not cover both ends of the page
-![video-background-deepseek](image-1.png)
+![video-background-deepseek](readme-media/image-1.png)
 - Lottie Container mobile view: used Deepseek to debug flex error in lottie container
-![lottie-container-deepseek](image-2.png)
+![lottie-container-deepseek](readme-media/image-2.png)
 - Search and filtered listing: Ensured that its mobile view is displayed correctly, as well as ensuring that the search functionality works when all letters are lower-case
-![search-and-filter-deepseek](image-3.png)
+![search-and-filter-deepseek](readme-media/image-3.png)
 
 # Testing
 Login Page (index.html)
