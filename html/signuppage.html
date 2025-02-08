@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MokeSell - Sign Up</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/normalize.css">
+</head>
+<body class="login">
+  <div class="image-background">
+    <img src="/media/loginbg1.jpg" alt="Background Image" class="background-image">
+  </div>
+  <div class="login-container">
+    <div class="logo">
+      <img src="/media/mokesell2.png" alt="MokeSell Logo">
+    </div>
+    <div class="form-container">
+      <h1>Create Your Account</h1>
+      <p>Join MokeSell to start your journey</p>
+      <form id="signupForm">
+        <div class="input-group-reg">
+          <label for="name">Full Name</label>
+          <input type="text" id="usernameInput" name="name" class = "registration" placeholder="Enter your full name" required>
+        </div>
+        <div class="input-group-reg">
+          <label for="email">Email</label>
+          <input type="email" id="emailInput" name="email" class = "registration" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group-reg">
+          <label for="password">Password</label>
+          <input type="password" id="passwordInput" name="password" class = "registration" placeholder="Enter your password" required>
+        </div>
+        <div class="input-group-reg">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirmPasswordInput" name="confirm-password" placeholder="Confirm your password" required>
+        </div>
+        <button class ="login-button" type="button" id="createAccountButton">Sign Up</button>
+      </form>
+      <p class="login-link">Already have an account? <a href="/index.html">Log in</a></p>
+    </div>
+  </div>
+  <script type="module" src="/js/script.js"></script>
+</body>
+</html>
