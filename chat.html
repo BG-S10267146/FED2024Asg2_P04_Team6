@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MokeSell Inbox</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script type="module" src="offer.js"></script>
+  <script type="module" src="chat.js"></script>
+  <script src="home.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-logo">
+      <img src="media/mokesell2.png" alt="MokeSell Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
+        <li><a href="listing.html"><i class="fas fa-compass"></i> <span>Explore</span></a></li>
+        <li><a href="inbox.html" class="active-link"><i class="fas fa-inbox"></i> <span>Inbox</span></a></li>
+        <li><a href="reward.html"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
+        <li><a href="profile.html"><i class="fas fa-user"></i> <span>Profile</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="inbox-container">
+    <div class="left-menu">
+      <div class="logo-inbox">
+        <div>MokeSell Inbox</div>
+      </div>
+      <div class="accordion">
+        <div class="section">
+          <input type="radio" name="accordion-1" id="offers-section" checked>
+          <label for="offers-section">
+            <span class="inbox-word">Offers</span>
+          </label>
+          <div class="content">
+            <div class="offers-list" id="offersList">
+              <!-- Placeholder for no offers -->
+              <div class="no-offers-placeholder" id="noOffersPlaceholder">
+                <p>No offers available yet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <input type="radio" name="accordion-1" id="chat-section">
+          <label for="chat-section">
+            <span class = "inbox-word">Chat</span>
+          </label>
+          <div class="content">
+            <div class="chat-list">
+              <!-- Chats will be dynamically populated via API -->
+              <div class="chat-item">
+
+                <div id="chatList">
+                  <ul id="chats"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="inbox-content">
+      <div class="inbox-header">
+        <h2>Chat</h2>
+      </div>
+      <div class="inbox-body" id="inboxBody">
+        <!-- Main content will be displayed here -->
+        <div id="chatContainer">
+          <div id="messages"></div>
+          <form id="chatForm" class="chatForm-Inbox">
+            <input type="text" id="messageInput" class = "message-Input" placeholder="Type a message..." required>
+            <input type="file" id="imageInput" class = "image-Input-chat"  accept="image/*">
+            <button type="submit" class="chat-sendbutton">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="chatlist.js"></script>
+</body>
+</html>
