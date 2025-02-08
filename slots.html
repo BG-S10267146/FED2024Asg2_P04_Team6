@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MokeSell Slots Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="gamebodyslotssp">
+    <div class="image-background-slots">
+        <img src="media/loginpage2.jpg" alt="Background Image" class="background-image-slots">
+    </div>    
+  <div class="game-container" id="gamecontainer">
+    <div class="header_slots">
+      <h1>MokeSell Slots Game</h1>
+      <p>Spin to win amazing rewards!</p>
+    </div>
+    <div class="slots-wrapper">
+      <div class="slots-grid">
+        <div class="slot"><span class="slot-item">🎁</span></div>
+        <div class="slot"><span class="slot-item">🚚</span></div>
+        <div class="slot"><span class="slot-item">💲</span></div>
+      </div>
+      <button class="spin-button">Spin</button>
+      <p class="spins-left"><span id="spins-counter"></span></p>
+      <div id="total-points">Total Points: 0</div>
+    </div>
+    <div class="rewards">
+      <h2>Your Rewards</h2>
+      <ul class="rewards-list">
+        <!-- Rewards will be dynamically added here -->
+      </ul>
+    </div>
+  </div>
+  <script src="slots.js"></script>
+</body>
+</html>
