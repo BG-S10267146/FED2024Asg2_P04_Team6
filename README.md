@@ -6,59 +6,149 @@ We were looking through the appendix and reading the scenario and realised the a
 # Design Process
 
 
+# Features
+
+## Existing Features
+- Login and Sign Up feature by saving user id to firebase api
+- 
+
+
+## Features Left to Implement
+- Review to sellers
+- Real-time chat with staff
+
+
 # Technology Used
 
 [Firebase](https://firebase.google.com)
+Firebase is an excellent for the implementation of API and storing and retrieving in and from the cloud database
 
-Essentially, this part is your sales pitch.
+[Cloudinary](https://cloudinary.com)
+Cloudinary is an excellent tool for storing images in the cloud and retrieving to the firebase database, since firebase storage has become a paid feature, this is an excellent alternative to achieve the outcomes of the website
 
-Design Process
-Provide us insights about your design process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+CSS
+CSS is an amazing coding langauge that has a great deal of flexibility in designing websites to however the user wants it to be
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
+Javascript
+Javascript is another excellent coding language to implement the unique and different front end features to make websites coded seem like they have backend features, despite it being only in the front end, an excellent language for those who has just started with front end development
 
-As a user type, I want to perform an action, so that I can achieve a goal.
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory) Include the Adobe XD wireframe as a folder. You can include the XD share url.
+HTML
+HTML is the perfect language for this project as it is able to seemlessly connect the design features of the CSS and the website extra functionalities of the javascript, allowing a functional website to be built without any backend technologies like node.js
 
-Features
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
+[Youtube to Webp comverter](https://en4.onlinevideoconverter.pro/45uu/youtube-downloader-mp4)
+This website is an excellent website for converting our videos to webp, allowing our website to seem more realistic due to the videos previewing in the background
 
-Existing Features
-Feature 1 - allows users X to achieve Y, by having them fill out Z
-...
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+ChatGPT
+ChatGPT is a strong artificial intelligence tool to help debug and teach me how to use the api features, allowing me to implement my features and even explore new features that I thought I could not do
 
-Features Left to Implement
-Another feature idea
-Technologies Used
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+# Assistive AI
 
-JQuery
-The project uses JQuery to simplify DOM manipulation.
-Assistive AI
-In this section you should document the process of using AI tools eg, ChatGPT, Gemini etc to help you with the development of features/functionalities of your web application. (Failure to document your use of AI tools will result in loss of marks.) Example below:
 
-Spotify API: ChatGPT was used to help with the implementation of the Spotify API (include screenshots of generated AI codes.)
-sample img
 
-Testing
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+# Testing
+Login Page (index.html)
+- Can only login if account is already created
+- Can only login if password is filled and is correct(matching when the account is created)
+- Try to do anything that does not fit the criteria, error will popup and remind you to fill them up
 
-Contact form:
-Go to the "Contact Us" page
-Try to submit the empty form and verify that an error message about the required fields appears
-Try to submit the form with an invalid email address and verify that a relevant error message appears
-Try to submit the form with all inputs valid and verify that a success message appears.
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+Sign Up Page (signuppage.html)
+- Can sign up if all fields are filled (password and confirm password field must be same)
+- Password must be at least 6 characters long
+- Email must be @gmail.com
+- Try to do anything that does not fit the criteria, error will popup and remind you to fill them up
 
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
+Home Page (home.html)
+- Can scroll the 5 pages of mp4 videos which gives the preview oh how each category can contain
+- Has header/nav bar which can enter the Explore page (listing), Inbox page (has chat feature and price request), Rewards Page that shows what you can earn and profile page to add friends and change your own details
 
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+Explore Page (listing.html)
+- Has a button which can create listing(unhide form)
+- Button to close the form
+- All fields must be filled in so that they can post the listing
+- If all fields are not filled, listing cannot be created and error will popup reminding you to fill them up
+- There are search bars and filters 
+- Lisitings displayed are displayed in a row of 3 and goes down a column if a fourth one appears and the same process repeats
+- Each listings have the name of their listing, their condition, the price, the category, the views, the description and listed by who
+- Each listing has 3 buttons to buy, make an offer and finally view more details
+- When you make an offer, the offer would be sent to the inbox of the seller(lister)
+- When you buy, you are brought to a page where you can spin 5 times and after spinning, the points will be saved and you can spend them to buy one reward, after buying, you will be brought back to the listing page
+- When you click view details, it stores your views in the listing page of each listing, and since if the listing is clicked, it means the buyer is interested, allowing them to start a private chat with the seller, the chat room is private, messages are saved to ensure to fraud is commited and buyers and sellers have a log to check
 
-Credits
-Content
-The text for section Y was copied from the Wikipedia article Z
-Media
-The photos used in this site were obtained from ...
-Acknowledgements
-I received inspiration for this project from X
+Inbox Page (inbox.html)
+- At the side bar has 2 features
+- First feature is the acceptance of offer or the decline of the offer
+- Upon acceptance, price will change, and upon decline, nothing will happen and the offer will dissapear if either options are pressed
+- When clicking on the chats button, display list of users the current user is chatting with(the ones who click chat with buyer in the listing details), only sellers can access this
+- Upon clicking on who to chat with you are brought to the same page but the inbox lottie is replaced with the chat where you can chat with the buyer
+- You can also delete the chat but the chat logs will be saved for fraud prevention
+
+Rewards Page (rewards.html)
+- Displays the chances of the game that can be played after purchasing something in the explore page
+- Displays the possible rewards that can be earned from playing the slots
+
+Profile Page (profile.html)
+- Allows you to change your username
+- Add or remove a profile picture
+- Change passwords but must still be at least 6 characters long
+- Search for friends, if name not in firestore database, name would not appear and say no user found
+- If user found can add friend as friend
+- The person that got requested can accept or deny the friend request
+- If friend gets accepted, added to the friendlist which is displayed below
+
+Flex
+- Most of our flex are horizontal
+- Flex for nav bar changes it to the justify icon which can be pressed and created into a drop down
+
+# Credits
+
+## Content
+[Lottie](https://app.lottiefiles.com/animation/ddb0f21b-9b13-413d-9e9b-1498002adafb?channel=web&source=public-animation&panel=download)
+
+[Formatting of ReadMe](https://github.com/DonovanKoh/interactivedev-readme-template?tab=readme-ov-file#media)
+
+[Fashion video](https://www.youtube.com/watch?v=t2LMvk7CKJ0)
+
+[Electronics video](https://www.youtube.com/watch?v=oYmU8Av_e84)
+
+[Kitchenware Video](https://www.youtube.com/watch?v=XJiyfQjgzjs)
+
+[Furniture Video](https://www.youtube.com/watch?v=kkiJftHG3Wo)
+
+[Sports Video](https://www.youtube.com/watch?v=r8AeU9z_MUI)
+
+[Listing video](https://www.youtube.com/watch?v=IwNlGi_fQCk)
+
+
+## Image
+[Listing photo](https://www.freepik.com/free-photo/bags-with-gifts-top-copy-space_5496689.htm#fromView=keyword&page=1&position=25&uuid=b0f609a4-1923-411b-8ac9-429179ab6c74&query=E+Commerce+Background)
+
+[Background1](https://www.freepik.com/free-photo/3d-illustration-laptop-with-shopping-basket-paper-bags-online-shopping-e-commerce-concept_12955270.htm#fromView=keyword&page=1&position=17&uuid=16097991-e4b5-4dd3-ac22-bfc7c2c66568&query=E+Commerce+Background)
+
+[Background 2](https://www.freepik.com/free-psd/3d-rendering-ecommerce-background_165591316.htm#fromView=keyword&page=1&position=42&uuid=16097991-e4b5-4dd3-ac22-bfc7c2c66568&query=E+Commerce+Background)
+
+[Background 3](https://www.freepik.com/free-photo/3d-illustration-smartphone-with-products-coming-out-screen-online-shopping-e-commerce-concept_12740329.htm#fromView=keyword&page=1&position=3&uuid=16097991-e4b5-4dd3-ac22-bfc7c2c66568&query=E+Commerce+Background)
+
+[Kia-car](https://www.google.com/search?q=car+4k+hd+photo+kia&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zrDs74HqV2CRn-pV1XVQwf0dGgPwg%3A1738959389746&ei=HWqmZ6ukLZSt4-EPgfCeoAY&ved=0ahUKEwjrptHFsLKLAxWU1jgGHQG4B2QQ4dUDCBE&uact=5&oq=car+4k+hd+photo+kia&gs_lp=EgNpbWciE2NhciA0ayBoZCBwaG90byBraWEyBhAAGAgYHkj7CVCCBVj-CHABeACQAQCYAS-gAZYBqgEBNLgBA8gBAPgBAZgCA6ACYJgDAIgGAZIHATOgB-sF&sclient=img#vhid=P6ZjHt0Cfyj_kM&vssid=mosaic)
+
+
+[Washing Machine](https://www.google.com/search?q=washing+machine+4k+hd+expensive&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zrd8TLZHHNxPFCiyZI-RKUQGtwXXA%3A1738960046677&ei=rmymZ5yFKc3t4-EPxYec2AE&ved=0ahUKEwiclPH-srKLAxXN9jgGHcUDBxsQ4dUDCBE&uact=5&oq=washing+machine+4k+hd+expensive&gs_lp=EgNpbWciH3dhc2hpbmcgbWFjaGluZSA0ayBoZCBleHBlbnNpdmVInxdQugRYjBZwAXgAkAEAmAE2oAH7AqoBAjEwuAEDyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAfCAw&sclient=img#vhid=b6oxYNIKkIIdQM&vssid=mosaic)
+
+[Macbook](https://www.google.com/search?sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&sxsrf=AHTn8zq5vi6tOoXunmd3xpKmMVanDPsF1Q:1738960109757&q=macbook+4k+hd+photo&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBpwxALD7bRaeOIZxqOFEngzB_O_LYSS4XXpaWwzVPCpGyfWZJNZM94YXT9YDYyu8sXSqhrL12HIXDrJcXcBPVxMprVBzBBo8GpBTOKii_ARewHE9whuTvgqKpWOQ3jE_MfDjmcaUNU5MpOa63pWd-S9AtQjUEKe-W7V3qjyZPFG2EsavEg&sa=X&ved=2ahUKEwiloPucs7KLAxXb4zgGHUqLHTsQtKgLegQIEBAB&biw=2048&bih=983&dpr=1.25#vhid=pegJzCel5opsCM&vssid=mosaic)
+
+[Iphone 16](https://www.google.com/search?q=iphone16+4k+hd+photo&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zpzLyhSFv76XDCV-oyBNX0XirAblA%3A1738960110914&ei=7mymZ-jGN8-q4-EPpPnHkAU&ved=0ahUKEwjo9cGds7KLAxVP1TgGHaT8EVIQ4dUDCBE&uact=5&oq=iphone16+4k+hd+photo&gs_lp=EgNpbWciFGlwaG9uZTE2IDRrIGhkIHBob3RvSNg3UPQdWIExcAN4AJABAJgBMKAB1wKqAQE5uAEDyAEA-AEBmAIGoALyAcICBhAAGAcYHsICCBAAGAcYCBgemAMAiAYBkgcBNqAHkDk&sclient=img#vhid=BDpkd9epRvPwFM&vssid=mosaic)
+
+[Giftcard](https://www.google.com/search?q=100+dollar+singapore+money+4k+hd+photo+high+quality&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zotAg8OdkHz_Z8QlZWTQ0mXX5l2qQ%3A1738960242563&ei=cm2mZ86PIq_H4-EP5Oih0As&ved=0ahUKEwjOkKXcs7KLAxWv4zgGHWR0CLoQ4dUDCBE&uact=5&oq=100+dollar+singapore+money+4k+hd+photo+high+quality&gs_lp=EgNpbWciMzEwMCBkb2xsYXIgc2luZ2Fwb3JlIG1vbmV5IDRrIGhkIHBob3RvIGhpZ2ggcXVhbGl0eUidJVAAWNIjcAB4AJABAJgBKaAB7waqAQIyNrgBA8gBAPgBAZgCAKACAJgDAJIHAKAHkgk&sclient=img#vhid=kFI4kkVxOv7WTM&vssid=mosaic)
+
+[Wireless earbuds](https://www.google.com/search?q=wireless+earbuds+4k+hd+photo+high+quality&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zqxIeYbEPGNhApxH4H0_oWwKMVoKQ%3A1738960263677&ei=h22mZ-aIKfaIqfkP8M-buQE&ved=0ahUKEwim6K3ms7KLAxV2RCoJHfDnJhcQ4dUDCBE&uact=5&oq=wireless+earbuds+4k+hd+photo+high+quality&gs_lp=EgNpbWciKXdpcmVsZXNzIGVhcmJ1ZHMgNGsgaGQgcGhvdG8gaGlnaCBxdWFsaXR5SKARUABYzxBwAHgAkAEAmAEpoAGnBKoBAjE2uAEDyAEA-AEBmAIAoAIAmAMAkgcAoAfQBQ&sclient=img#vhid=VLv16Gr3kA1aqM&vssid=mosaic)
+
+[Waterbottle](https://www.google.com/search?q=hydroflask+4k+hd+photo+high+quality&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zqb9pTODskzSkky2vhPD9RbeqPz9g%3A1738960364747&ei=7G2mZ-qsLdqY4-EPiJXjUA&ved=0ahUKEwjq0saWtLKLAxVazDgGHYjKGAoQ4dUDCBE&uact=5&oq=hydroflask+4k+hd+photo+high+quality&gs_lp=EgNpbWciI2h5ZHJvZmxhc2sgNGsgaGQgcGhvdG8gaGlnaCBxdWFsaXR5SO0uUIEEWIItcAZ4AJABAZgBcqAB6QeqAQQyNi4xuAEDyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAe_CQ&sclient=img#vhid=2J1RsoEk99j-0M&vssid=mosaic)
+
+
+
+[Mystery bag](https://www.google.com/search?q=mystery+bag+hd+photo+high+quality&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zoUMsDec0BUJx5mLFApIlReE2zfjQ%3A1738960413513&ei=HW6mZ4CKH6GF4-EP-I-ayAo&ved=0ahUKEwjAjOettLKLAxWhwjgGHfiHBqkQ4dUDCBE&uact=5&oq=mystery+bag+hd+photo+high+quality&gs_lp=EgNpbWciIW15c3RlcnkgYmFnIGhkIHBob3RvIGhpZ2ggcXVhbGl0eUjoEVDJBVj8D3ABeACQAQCYASagAaYBqgEBNbgBA8gBAPgBAZgCAKACAJgDAIgGAZIHAKAH4QE&sclient=img#vhid=1gqxZ2-3xK3NdM&vssid=mosaic)
+
+[Tote bag](https://www.google.com/search?q=totebag+hd+photo+high+quality&sca_esv=4271166684a7579e&rlz=1C1FKPE_en-GBSG1101SG1101&udm=2&biw=2048&bih=983&sxsrf=AHTn8zp3SBNXVdUaeXH0xShgS7K02owJ_A%3A1738960421426&ei=JW6mZ57iGeaL4-EPiuzp2AY&ved=0ahUKEwjeiMqxtLKLAxXmxTgGHQp2GmsQ4dUDCBE&uact=5&oq=totebag+hd+photo+high+quality&gs_lp=EgNpbWciHXRvdGViYWcgaGQgcGhvdG8gaGlnaCBxdWFsaXR5SNIMUABY-ghwAHgAkAEAmAFIoAGjAqoBATe4AQPIAQD4AQGYAgCgAgCYAwCSBwCgB7sC&sclient=img#vhid=NDE6st7vhUVUKM&vssid=mosaic)
+
+
+# Acknowledgements
+
