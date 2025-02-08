@@ -5,262 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MokeSell - Listings</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* General Styles */
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #f5f5f5;
-    }
-
-    /* Navigation Bar */
-    header {
-      width: 100%;
-      background: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.0);
-      position: fixed;
-      top: 0;
-      z-index: 1000;
-      box-sizing: border-box;
-    }
-
-    .header-logo img {
-      height: 40px;
-    }
-
-    header nav ul {
-      display: flex;
-      list-style: none;
-      justify-content: flex-end;
-      gap: 15px;
-      padding: 0;
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    header nav ul li {
-      margin: 0;
-    }
-
-    header nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-size: 14px;
-      padding: 10px 15px;
-      display: block;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    header nav ul li a.active-link {
-      font-weight: bold;
-      color: #FFC107;
-      position: relative;
-    }
-
-    header nav ul li a.active-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #FFC107;
-      transform: translateY(5px);
-      transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    }
-
-    header nav ul li a:hover {
-      color: #007bff;
-      transform: scale(1.1);
-      border-radius: 5px;
-    }
-
-    .menu-toggle-btn {
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      padding: 5px;
-      color: #555;
-      position: relative;
-      display: none;
-      box-shadow: none;
-    }
-
-    @media (max-width: 768px) {
-      .menu-toggle-btn {
-        display: block;
-      }
-
-      nav {
-        flex-direction: column;
-        position: absolute;
-        top: 30px;
-        right: 10px;
-        padding: 10px;
-        border-radius: 8px;
-      }
-
-      header nav ul {
-        flex-direction: column;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        position: absolute;
-        right: 0;
-        top: 60px;
-        width: 200px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-      }
-
-      header nav.active ul {
-        max-height: 300px;
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      header nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-size: 14px;
-        padding: 10px 15px;
-        background-color: transparent;
-      }
-
-      header nav ul li a:hover {
-        background-color: #f0f0f0;
-        color: #007bff;
-      }
-
-      header nav ul li {
-        text-align: left;
-        margin-bottom: 5px;
-      }
-
-      header nav ul li:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    /* Video Background */
-    .video-background {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-    }
-
-    .background-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(50%);
-    }
-
-    .video-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-    }
-
-    .video-overlay h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    .video-overlay p {
-      font-size: 1.5rem;
-      margin: 10px 0 0;
-    }
-
-    /* Search Bar */
-    .search-bar {
-      margin: 20px auto;
-      text-align: center;
-    }
-
-    .search-bar input {
-      padding: 10px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .search-bar button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .search-bar button:hover {
-      background-color: #0056b3;
-    }
-
-    /* Listings Grid */
-    .listings-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .listing-card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      overflow: hidden;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .listing-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .listing-card h3 {
-      font-size: 1.5rem;
-      margin: 10px 0;
-    }
-
-    .listing-card p {
-      font-size: 1rem;
-      color: #555;
-    }
-
-    .listing-card button {
-      padding: 10px 20px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .listing-card button:hover {
-      background-color: #218838;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="home.js"></script>
+    <script type="module" src="listing.js"></script>
 </head>
-<body>
+
+<body class="body-list">
     <body class="home-page">
         <header>
           <div class="header-logo">
@@ -269,82 +19,88 @@
           <div class="menu-toggle-btn">☰</div>
           <nav>
             <ul>
-              <li><a href="NEWHOME.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
+              <li><a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
               <li><a href="listing.html" class="active-link"><i class="fas fa-compass"></i> <span>Explore</span></a></li>
-              <li><a href="inbox2.html"><i class="fas fa-inbox"></i> <span>Inbox</span></a></li>
+              <li><a href="inbox.html"><i class="fas fa-inbox"></i> <span>Inbox</span></a></li>
               <li><a href="reward.html"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
               <li><a href="profile.html"><i class="fas fa-user"></i> <span>Profile</span></a></li>
             </ul>
           </nav>
         </header>
+      <!-- Background Image -->
+  <div class="image-background">
+    <img src="media/bags-with-gifts-top-copy-space.jpg" alt="Background Image" class="background-image-slots">
+  </div>
 
-  <!-- Video Background -->
-  <div class="video-background">
+<!-- Video Background -->
+<div class="video-background-listing">
     <video class="background-video" autoplay muted loop>
-      <source src="mp4-videos/Kitchens Made for Making _ KitchenAid 720.mp4" type="video/mp4">
+      <source src="mp4-videos/B-SIDE OF LIFE _ Spec Ad _ Spotify (2021) 720.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <div class="video-overlay">
-      <h1>Welcome to MokeSell</h1>
-      <p>Find the best deals on electronics, furniture, sports, kitchenware, and fashion.</p>
+    <div class="video-overlay-listing">
+      <h1 class = "video-overlay-listing-h1">Welcome to MokeSell</h1>
+      <p class="video-overlay-listing-p">Find the best deals on electronics, furniture, sports, kitchenware, and fashion.</p>
     </div>
   </div>
-
-  <!-- Search Bar -->
-  <div class="search-bar">
-    <input type="text" id="search-input" placeholder="Search for products...">
-    <button onclick="filterListings()">Search</button>
+  <div class="input-group">
+    <input type="text" id="searchInput" placeholder="Search by title, description, or category">
   </div>
-
-  <!-- Listings Grid -->
-  <div class="listings-container" id="listings-container">
-    <!-- Listings will be dynamically populated here -->
-  </div>
-
-  <script>
-    // Sample Data for Listings
-    const listings = [
-      { category: "Electronics", seller: "TechGadgets", image: "electronics1.jpg" },
-      { category: "Furniture", seller: "HomeEssentials", image: "furniture1.jpg" },
-      { category: "Sports", seller: "SportyDeals", image: "sports1.jpg" },
-      { category: "Kitchenware", seller: "KitchenPro", image: "kitchenware1.jpg" },
-      { category: "Fashion", seller: "TrendyWear", image: "fashion1.jpg" },
-      { category: "Electronics", seller: "GadgetWorld", image: "electronics2.jpg" },
-      { category: "Furniture", seller: "CozyHome", image: "furniture2.jpg" },
-      { category: "Sports", seller: "ActiveLife", image: "sports2.jpg" },
-      { category: "Kitchenware", seller: "ChefZone", image: "kitchenware2.jpg" },
-    ];
-
-    // Function to display listings
-    function displayListings(filteredListings) {
-      const container = document.getElementById("listings-container");
-      container.innerHTML = ""; // Clear existing listings
-
-      filteredListings.forEach((item) => {
-        const listingCard = document.createElement("div");
-        listingCard.className = "listing-card";
-        listingCard.innerHTML = `
-          <img src="${item.image}" alt="${item.category}">
-          <h3>${item.category}</h3>
-          <p>Seller: ${item.seller}</p>
-          <button>Buy Now</button>
-        `;
-        container.appendChild(listingCard);
-      });
-    }
-
-    // Function to filter listings based on search input
-    function filterListings() {
-      const searchInput = document.getElementById("search-input").value.toLowerCase();
-      const filteredListings = listings.filter((item) =>
-        item.category.toLowerCase().includes(searchInput)
-      );
-      displayListings(filteredListings);
-    }
-
-    // Initial display of all listings
-    displayListings(listings);
-  </script>
-  <script src = "home.js"></script>
+<body>
+    <div id="listings-header-container">
+    <h1 class="list-h1">Item Listings</h1>
+    
+    <button id="toggleFormButton" class="list-button">Create Listing</button>
+    
+    <div class="listing-container" style="display: none;">
+        <h2 class = "list-h2">List an Item</h2>
+        <form id="sellForm">
+            <input type="text" id="titleInput" placeholder="Title" required><br>
+            <input type="number" id="priceInput" placeholder="Price" required><br>
+            <textarea id="descriptionInput" placeholder="Description" required></textarea><br>
+            <input type="file" id="imageInput" accept="image/*" required><br>
+            <div class="input-group">
+              <label for="customAttributeInput">Category</label>
+              <select id="customAttributeInput" required>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+                <option value="furniture">Furniture</option>
+                <option value="accessories">Accessories</option>
+                <option value="kitchenware">Kitchenware</option>
+              </select>
+            </div>
+            <select id="conditionInput" required>
+                <option value="First-hand">First-hand</option>
+                <option value="Second-hand">Second-hand</option>
+            </select><br>
+            <button type="button" class="list-button" id="listItemButton">List Item</button>
+        </form>
+    </div>
+    
+    <h2 class="list-h2">Filter Listings</h2>
+    <select id="sortTime">
+        <option value="none">Sort by Time</option>
+        <option value="asc">Oldest First</option>
+        <option value="desc">Newest First</option>
+    </select>
+    <select id="sortPopularity">
+        <option value="none">Sort by Popularity</option>
+        <option value="asc">Least Viewed</option>
+        <option value="desc">Most Viewed</option>
+    </select>
+    
+    <div id="listingsDisplay">
+        <!-- Example listings -->
+        <div class="listing-item">Item 1</div>
+        <div class="listing-item">Item 2</div>
+        <div class="listing-item">Item 3</div>
+        <div class="listing-item">Item 4</div>
+        <div class="listing-item">Item 5</div>
+        <div class="listing-item">Item 6</div>
+        <div class="listing-item">Item 7</div>
+        <div class="listing-item">Item 8</div>
+        <div class="listing-item">Item 9</div>
+    </div>
+</div>
 </body>
 </html>
