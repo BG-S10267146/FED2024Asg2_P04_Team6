@@ -12,6 +12,7 @@ We were looking through the appendix and reading the scenario and realised the a
 - Chat: Each message has a box, allowing them to be displayed and found properly
 - Lighter color scheme: Gives website more cheerful vibes, allowing users to feel satistfied while using the website
 - Blurred purplish bubbly background in slots: Give website a unique view when after buying so user will not feel bored of the design
+- [Figma](https://www.figma.com/design/iOZ4etaJ8i9460aenkGBmJ/FED_Assg2_Wireframe?node-id=0-1&p=f&t=j1GbSMdzsowUIVoa-0)
 
 # Features
 
